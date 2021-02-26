@@ -1,66 +1,65 @@
-var p = document.getElementById("numberP");
-var q = document.getElementById("numberQ");
-var n = document.getElementById("numberN");
-var p_1 = document.getElementById("numberP_1");
-var q_1 = document.getElementById("numberQ_1");
-var phi = document.getElementById("phi");
-var d = document.getElementById("d");
-var e = document.getElementById("e");
+var privateKey, publicKey, decryptedFile, decryptedFileName, encryptedFile, encryptedFileName;
 
-function getCoefficients() {
-  let p_value = p.value;
-  let q_value = q.value;
-
-  //Asignando los valores respectivos
-  n.value = p_value*q_value; // p * q
-  p_1.value = p_value - 1; // p-1
-  q_1.value = q_value - 1; // q-1
-  phi.value = p_1.value * q_1.value; // (p-1)*(q-1)
+function encrypt() {
+  let encrypt = new JSEncrypt();
+  encrypt.setPublicKey(publicKey);
+  let encrypted = encrypt.encrypt(decryptedFile);
+  download(decryptedFileName, encrypted);
 }
 
-function getKeys() {
-  let phi_value = phi.value;
-  let e_value = e.value;
-
-  for(var i = 1; i<phi_value ; i++){
-    if((i*e_value)%phi_value == 1){
-      d.value = i;
-      return;
-    }
-  }
+function decrypt() {
+  var decrypt = new JSEncrypt();
+  decrypt.setPrivateKey(privateKey);
+  var uncrypted = decrypt.decrypt(encryptedFile);
+  download(encryptedFileName, uncrypted);
 }
 
-function validate(element, validation){
-  let number = element.value;
-  if(!validation(number) || number===0){
-    element.classList.add("is-invalid");
-  }else{
-    element.classList.remove("is-invalid");
-  }
+function readFile(e, callback){
+  let reader = new FileReader();
+  let file = e.files[0];
+
+  reader.onload = function() {
+    callback(reader.result);
+  };
+
+  reader.readAsText(file);
 }
 
-function isPrime(number){
-  for (var i = 2; i < number; i++) {
-    if (number % i === 0) {
-      return false;
-    }
-  }
-  return number != 1;
+function download(filename, content) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }
 
-function isCoprime(number) {
-  let pLess1 = p_1.value;
-  let qLess1 = q_1.value;
-
-  return number%pLess1 !== 0 && number%qLess1 !== 0;
+function getPrivateKey(key) {
+  privateKey = key;
 }
 
-function getPrivate(){
-  let phi_value = phi.value;
-  let e_value = e.value;
-
-  
+function getPublicKey(key) {
+  publicKey = key;
 }
 
+function getDecryptedFile(file){
+  decryptedFileName = document.getElementById('decryptedFile').files[0].name;
+  let result = decryptedFileName.split(".");
+  result[0] += "_C";
+  decryptedFileName = result[0] + "." + result[1];
 
+  decryptedFile = file;
+}
 
+function getEncryptedFile(file){
+  encryptedFileName = document.getElementById('encryptedFile').files[0].name;
+  let result = encryptedFileName.split(".");
+  result[0] += "_D";
+  encryptedFileName = result[0] + "." + result[1];
+
+  encryptedFile = file;
+}
