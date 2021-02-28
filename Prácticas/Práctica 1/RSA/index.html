@@ -14,92 +14,91 @@
 
 <body>
   <div class="container">
-    <div class="row">
-      <div class="card card-signin my-3">
-        <div class="card-body">
-          <h1 class="card-title text-center">RSA</h1>
+    <div class="card my-3">
+      <div class="card-body">
 
-          <div class="container">
+        <div class="container">
 
-            <p class="fs-4">
-              Welcome to the RSA encoding system, please select the corresponding files into the following file inputs
-              in
-              order to encrypt or decrypt, afterwards you should press the button and a file will be automatically
-              generated
-            </p>
+          <h1 class="card-title big text-center">RSA</h1>
 
-          </div>
+          <p class="fs-5">
+            Welcome to the RSA encoding and decoding system, please select the corresponding files into the following
+            file inputs
+            in
+            order to encrypt or decrypt, afterwards you should press the button and a encrypted/decrypted file will be
+            automatically generated.
+          </p>
 
-          <h1 class="card-title text-center mt-4 mb-2">ENCRYPT</h1>
+        </div>
 
-          <div class="container">
+        <div class="container">
 
-            <div class="row gx-6">
+          <h2 class="card-title mt-4 mb-2">ENCRYPT</h2>
 
-              <div class="col">
-                <div class="mb-3">
-                  <label for="formFile" class="form-label">Receipter's public key for encode</label>
-                  <input id="publicKey" class="form-control" type="file" onchange="readFile(this, getPublicKey)">
-                </div>
+          <div class="row gx-6">
+
+            <div class="col">
+              <div class="mb-3">
+                <label for="publicKey" class="form-label">Receipter's public key for econding</label>
+                <input id="publicKey" class="form-control" type="file" onchange="readFile(this, getPublicKey)">
               </div>
-
-            </div>
-
-            <div class="row gx-6">
-
-              <div class="col">
-                <div class="mb-3">
-                  <label for="decryptedFile class=" form-label">File to encode</label>
-                  <input id="decryptedFile" class="form-control" type="file"
-                    onchange="readFile(this, getDecryptedFile)">
-                </div>
-              </div>
-              <div class="col">
-                <div class="d-grid gap-2 mt-3">
-                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick="encrypt()">Encrypt</button>
-                </div>
-              </div>
-
             </div>
 
           </div>
 
-          <h1 class="card-title text-center mt-3 mb-2">DECRYPT</h1>
+          <div class="row gx-6">
 
-          <div class="container">
-
-            <div class="row gx-6">
-
-              <div class="col">
-                <div class="mb-3">
-                  <label for="formFile" class="form-label">Your private key for decode</label>
-                  <input id="privateKey" class="form-control" type="file" id="formFile"
-                    onchange="readFile(this, getPrivateKey)">
-                </div>
+            <div class="col">
+              <div class="mb-3">
+                <label for="decryptedFile" class="form-label">File to encode</label>
+                <input id="decryptedFile" class="form-control" type="file" onchange="readFile(this, getDecryptedFile)">
               </div>
-
             </div>
-
-            <div class="row gx-6">
-
-              <div class="col">
-                <div class="mb-3">
-                  <label for="encryptedFile class=" form-label">File to decode</label>
-                  <input id="encryptedFile" class="form-control" type="file"
-                    onchange="readFile(this, getEncryptedFile)">
-                </div>
+            <div class="col">
+              <div class="d-grid gap-2 mt-3">
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="encrypt()">Encrypt</button>
               </div>
-              <div class="col">
-                <div class="d-grid gap-2 mt-3">
-                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick="decrypt()">Decrypt</button>
-                </div>
-              </div>
-
             </div>
 
           </div>
 
         </div>
+
+
+
+        <div class="container">
+
+          <h2 class="card-title mt-3 mb-2">DECRYPT</h2>
+
+          <div class="row gx-6">
+
+            <div class="col">
+              <div class="mb-3">
+                <label for="privateKey" class="form-label">Your private key for decoding</label>
+                <input id="privateKey" class="form-control" type="file" onchange="readFile(this, getPrivateKey)">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row gx-6">
+
+            <div class="col">
+              <div class="mb-3">
+                <label for="encryptedFile" class=" form-label">File to decode</label>
+                <input id="encryptedFile" class="form-control" type="file" onchange="readFile(this, getEncryptedFile)">
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-grid gap-2 mt-3">
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="decrypt()">Decrypt</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
