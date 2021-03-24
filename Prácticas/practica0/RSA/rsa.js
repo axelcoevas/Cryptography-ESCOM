@@ -14,11 +14,11 @@ function decrypt() {
   download(encryptedFileName, uncrypted);
 }
 
-function readFile(e, callback){
+function readFile(e, callback) {
   let reader = new FileReader();
   let file = e.files[0];
 
-  reader.onload = function() {
+  reader.onload = function () {
     callback(reader.result);
   };
 
@@ -46,7 +46,7 @@ function getPublicKey(key) {
   publicKey = key;
 }
 
-function getDecryptedFile(file){
+function getDecryptedFile(file) {
   decryptedFileName = document.getElementById('decryptedFile').files[0].name;
   let result = decryptedFileName.split(".");
   result[0] += "_C";
@@ -55,7 +55,7 @@ function getDecryptedFile(file){
   decryptedFile = file;
 }
 
-function getEncryptedFile(file){
+function getFile(file) {
   encryptedFileName = document.getElementById('encryptedFile').files[0].name;
   let result = encryptedFileName.split(".");
   result[0] += "_D";

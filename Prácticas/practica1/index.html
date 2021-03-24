@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PRAC 1</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card my-4">
+      <div class="card-body mx-5 my-4">
+        <div class="container">
+          <h1 class="card-title big text-center">CLASSIC CIPHERS</h1>
+          <p class="fs-5">
+            Please select the text file and if you want to encode or decode, enter the keys and press do it!
+          </p>
+        </div>
+        <div class="container mt-4">
+          <h2 class="card-title mt-4 mb-2">Vigenere</h2>
+          <div class="row gx-6">
+            <div class="col">
+              <div class="mb-2">
+                <label for="vigFile" class="form-label">File to encode</label>
+                <input id="vigFile" class="form-control" type="file" onchange="readFile(this, getVigenereText)">
+              </div>
+            </div>
+            <div class="col">
+              <div class="mt-5">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="vigRadio" id="vigRadio1" value="true" checked>
+                  <label class="form-check-label" for="vigRadio1">Encrypt</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="vigRadio" id="vigRadio2" value="false">
+                  <label class="form-check-label" for="vigRadio2">Decrypt</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row gx-6">
+            <div class="col">
+              <div class="mb-3">
+                <div class="input-group mt-4">
+                  <span class="input-group-text" id="basic-addon1">Key</span>
+                  <input id="vigKey" type="text" class="form-control" placeholder="Key" aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-grid gap-2 mt-3">
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="affine()">Do it!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container mt-5 mb-5">
+          <h2 class="card-title mt-4 mb-2">Affine</h2>
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text">n</span>
+              <input type="text" class="form-control" placeholder="Number of characters" aria-label="Username">
+              <span class="input-group-text">&alpha;</span>
+              <input type="text" class="form-control" placeholder="Alpha" aria-label="Server">
+              <span class="input-group-text">&beta;</span>
+              <input type="text" class="form-control" placeholder="Beta" aria-label="Server">
+              <div class="mt-1 mx-5">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="affRadio" id="affRadio1" value="true" checked>
+                  <label class="form-check-label" for="affRadio1">Encrypt</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="affRadio" id="affRadio2" value="false">
+                  <label class="form-check-label" for="affRadio2">Decrypt</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row gx-6">
+            <div class="col">
+              <div class="mb-2">
+                <label for="vigFile" class="form-label">File to encode</label>
+                <input id="vigFile" class="form-control" type="file" onchange="readFile(this, getVigenereText)">
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-grid gap-2 mt-3">
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="affine()">Do it!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
