@@ -53,48 +53,50 @@
             </div>
             <div class="col">
               <div class="d-grid gap-2 mt-3">
-                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="affine()">Do it!</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="vigenere()">Do it!</button>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="container mt-5 mb-5">
-          <h2 class="card-title mt-4 mb-2">Affine</h2>
-          <div class="col">
-            <div class="input-group mb-3">
-              <span class="input-group-text">n</span>
-              <input type="text" class="form-control" placeholder="Number of characters" aria-label="Username">
-              <span class="input-group-text">&alpha;</span>
-              <input type="text" class="form-control" placeholder="Alpha" aria-label="Server">
-              <span class="input-group-text">&beta;</span>
-              <input type="text" class="form-control" placeholder="Beta" aria-label="Server">
-              <div class="mt-1 mx-5">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="affRadio" id="affRadio1" value="true" checked>
-                  <label class="form-check-label" for="affRadio1">Encrypt</label>
+        <form>
+          <div class="container mt-5 mb-5">
+            <h2 class="card-title mt-4 mb-2">Affine</h2>
+            <div class="col">
+              <div class="input-group has-validation mb-3">
+                <span class="input-group-text">n</span>
+                <input id="affN" type="number" class="form-control" placeholder="Number of characters" max="256" />
+                <span class="input-group-text">&alpha;</span>
+                <input id="affA" type="number" class="form-control" placeholder="Alpha" />
+                <span class="input-group-text">&beta;</span>
+                <input id="affB" type="number" class="form-control" placeholder="Beta" />
+                <div class="mt-1 mx-5">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="affRadio" id="affRadio1" value="true" checked>
+                    <label class="form-check-label" for="affRadio1">Encrypt</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="affRadio" id="affRadio2" value="false">
+                    <label class="form-check-label" for="affRadio2">Decrypt</label>
+                  </div>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="affRadio" id="affRadio2" value="false">
-                  <label class="form-check-label" for="affRadio2">Decrypt</label>
+              </div>
+            </div>
+            <div class="row gx-6">
+              <div class="col">
+                <div class="mb-2">
+                  <label for="affFile" class="form-label">File to encode</label>
+                  <input id="affFile" class="form-control" type="file" onchange="readFile(this, getAffineText)">
+                </div>
+              </div>
+              <div class="col">
+                <div class="d-grid gap-2 mt-3">
+                  <button type="button" class="btn btn-primary btn-lg btn-block" onclick="affine()">Do it!</button>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row gx-6">
-            <div class="col">
-              <div class="mb-2">
-                <label for="vigFile" class="form-label">File to encode</label>
-                <input id="vigFile" class="form-control" type="file" onchange="readFile(this, getVigenereText)">
-              </div>
-            </div>
-            <div class="col">
-              <div class="d-grid gap-2 mt-3">
-                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="affine()">Do it!</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
