@@ -1,6 +1,7 @@
 let vigenereText;
 let affineText;
 
+//  Gets all values and invoques the cipher Vigenère
 function vigenere() {
   let text = vigenereText;
   let key = getVigenereKey();
@@ -12,6 +13,8 @@ function vigenere() {
   download(filename, m);
 }
 
+
+//  Gets all values and invoques the cipher Affine
 function affine() {
   let n = document.getElementById('affN').value;
   let alpha = document.getElementById('affA').value;
@@ -20,9 +23,11 @@ function affine() {
   let filename = getAffineFileName();
   let text = affineText;
 
-  if (!validAffineKey(n, alpha)) {
-    alert('Por favor elije un valor valido para Alpha');
+  if (!euclidesAlgorithm(n, alpha)) {
+    swal("Inválido", "Elige un valor válido de alpha", "error");
     return;
+  } else {
+    swal("Válido", "El inverso multiplicativo es: " + extendedEuclidesAlgorithm(alpha, n), "success");
   }
 
   let m = affineCipher(text, alpha, beta, n, cipher);
@@ -30,6 +35,7 @@ function affine() {
   download(filename, m);
 }
 
+//  Makes the file and download it
 function download(filename, content) {
   var element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
@@ -43,6 +49,7 @@ function download(filename, content) {
   document.body.removeChild(element);
 }
 
+//  Reads a file
 function readFile(e, callback) {
   let reader = new FileReader();
   let file = e.files[0];
@@ -54,14 +61,17 @@ function readFile(e, callback) {
   reader.readAsText(file);
 }
 
+//  Gets text from file in Vigenère
 function getVigenereText(file) {
   vigenereText = file;
 }
 
+//  Gets text from file in Affine
 function getAffineText(file) {
   affineText = file;
 }
 
+//  Gets Vigenère filename
 function getVigenereFileName() {
   let vigenereFilename = document.getElementById('vigFile').files[0].name;
 
@@ -75,6 +85,7 @@ function getVigenereFileName() {
   return vigenereFilename;
 }
 
+//  Gets Affine filename 
 function getAffineFileName() {
   let affineFilename = document.getElementById('affFile').files[0].name;
 
@@ -88,11 +99,13 @@ function getAffineFileName() {
   return affineFilename;
 }
 
+//  Gets the key input in Vigenère
 function getVigenereKey() {
   let key = document.getElementById('vigKey').value;
   return key;
 }
 
+//  Function that gets if it's encrypt or decrypt Vigenère
 function getVigCipher() {
   let radio = document.getElementsByName('vigRadio');
   let value;
@@ -104,6 +117,7 @@ function getVigCipher() {
   return value;
 }
 
+//  Function that gets if it's encrypt or decrypt Affine
 function getAffCipher() {
   let radio = document.getElementsByName('affRadio');
   let value;
@@ -115,8 +129,7 @@ function getAffCipher() {
   return value;
 }
 
-//Vigenere functions
-
+//  Vignere Cipher Algorithm
 function vigenereCipher(text, key, cipher) {
   let m = '';
   text = text.toUpperCase();
@@ -152,9 +165,10 @@ function getNeutroKey(k) {
   return neutro;
 }
 
-//Affine functions
+//  Affine functions
 
-function validAffineKey(a, b) { //  Euclides's algorithm
+//  Euclides's algorithm
+function euclidesAlgorithm(a, b) {
   let x = a;
   let y = b;
 
@@ -167,7 +181,8 @@ function validAffineKey(a, b) { //  Euclides's algorithm
   return x === 1;
 }
 
-function multiplicativeInverse(a, n) {  // Euclides's extended Algorithm
+//  Euclides's extended Algorithm
+function extendedEuclidesAlgorithm(a, n) {
   let r = [a, n];
   let s = [1, 0];
   let t = [0, 1];
@@ -185,25 +200,25 @@ function multiplicativeInverse(a, n) {  // Euclides's extended Algorithm
   return s[i - 1] < 0 ? n + s[i - 1] : s[i - 1];
 }
 
+//  Affine Cipher Algorithm
 function affineCipher(text, key, b, n, cipher) {
   let m = '';
 
-  if (!cipher) {
-    key = multiplicativeInverse(key, n);
+  if (cipher) { //  Para cifrar
+    for (let i = 0; i < text.length; i++) {
+      let p = text.charCodeAt(i);
+      let c = String.fromCharCode((key * p + b) % n + 33);
+      m += c;
+    }
+  } else {  //  Para descifrar
+    key = extendedEuclidesAlgorithm(key, n);
     b = n - b;
     for (let i = 0; i < text.length; i++) {
       let p = text.charCodeAt(i) - 33;
       let c = String.fromCharCode((key * (p + b)) % n);
       m += c;
     }
-  } else {
-    for (let i = 0; i < text.length; i++) {
-      let p = text.charCodeAt(i);
-      let c = String.fromCharCode((key * p + b) % n + 33);
-      m += c;
-    }
   }
 
   return m;
 }
-//  Validations for inputs
