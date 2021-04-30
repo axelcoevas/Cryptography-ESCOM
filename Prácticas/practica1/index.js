@@ -200,6 +200,14 @@ function extendedEuclidesAlgorithm(a, n) {
   return s[i - 1] < 0 ? n + s[i - 1] : s[i - 1];
 }
 
+console.log(extendedEuclidesAlgorithm(125, 256));
+
+function helpme(a) {
+  return a % 256;
+}
+
+console.log(helpme(213 * 237));
+
 //  Affine Cipher Algorithm
 function affineCipher(text, key, b, n, cipher) {
   let m = '';
