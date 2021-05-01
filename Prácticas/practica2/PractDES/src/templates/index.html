@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PRAC 1</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card my-4">
+      <div class="card-body mx-5 my-4">
+        <div class="container">
+          <h1 class="card-title big text-center">CLASSIC CIPHERS</h1>
+          <p class="fs-5">
+            Please select the file and if you want to encode or decode, enter the keys and press do it!
+          </p>
+        </div>
+        <form enctype="multipart/form-data" action="" method="post">
+          <h2 class="card-title mt-4 mb-2">Cifrador por bloques DES</h2>
+          <div class="row gx-6">
+            <div class="col">
+              <div class="mt-5">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="cipherRadio" id="cipherRadio1" value="c" checked>
+                  <label class="form-check-label" for="cipherRadio1">Encrypt</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="cipherRadio" id="cipherRadio2" value="d">
+                  <label class="form-check-label" for="cipherRadio2">Decrypt</label>
+                </div>
+              </div>
+              <div class="mt-5">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="modeRadio" id="modeRadioECB" value="0" checked>
+                  <label class="form-check-label" for="modeRadioECB">ECB</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="modeRadio" id="modeRadioCBC" value="1">
+                  <label class="form-check-label" for="modeRadioCBC">CBC</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="modeRadio" id="modeRadioCFB" value="2">
+                  <label class="form-check-label" for="modeRadioCFB">CFB</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="modeRadio" id="modeRadioOFB" value="3">
+                  <label class="form-check-label" for="modeRadioOFB">OFB</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row gx-6">
+            <div class="col">
+              <div class="mb-2">
+                <label for="arch" class="form-label">File to encode</label>
+                <input id="archivo" name="archivo" class="form-control" type="file">
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <div class="input-group mt-4">
+                  <span class="input-group-text" id="basic-addon1">Key</span>
+                  <input id="key" name="key" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <div class="input-group mt-4">
+                  <span class="input-group-text" id="basic-addon1">Initialization vector</span>
+                  <input id="vector" name="vector" type="text" class="form-control" placeholder="vector"
+                    aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-grid gap-2 mt-3">
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="mybutton">Do it!</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
